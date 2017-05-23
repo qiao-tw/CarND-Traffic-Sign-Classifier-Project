@@ -115,6 +115,19 @@ My final model results were:
 * validation set accuracy of 0.932
 * test set accuracy of 0.906
 
+* What was the first architecture that was tried and why was it chosen? I chose the LeNet provided in previous lessons for the first try, because it's the fastest way to get a result to make sure all components are connected and the pipeline is working.
+
+* What were some problems with the initial architecture?
+Not surprising, the accuracy never met 0.93. At beginning, I set epoch to a large number(=150) and learning rate to very small numbers(0.0005, 0.0001, 0.00005...), but the accuracy didn't increase much, sometimes even decrease.
+
+* How was the architecture adjusted and why was it adjusted?
+Since changing learning rate didn't help, I started modifying the preprocessing stage. I tried several different grayscale methods including the opencv built-in function, averaging color channels, sum of dot-product of certain grayscale vector with color channels ... etc. In addition, I also tried normalization and standardization, but none of them help much..., I started to consider my original setting of epoch and learning rate.
+
+* Which parameters were tuned? How were they adjusted and why? After a long period of try and error, I found my mistake was no patience. Previously, when I saw the accuracy starting to jump between some range, then I just halt the program and retry other combination of parameters, because I don't know it will keep decreasing in such oscillating way.
+
+* What are some of the important design choices and why were they chosen? Finally, I chose [epoch=200, learning rate=0.001, batch size=128] as parameter set. These parameter can always reach accuracy=0.9, sometimes 0.95. Besides, to enhance the accuracy, I use the tensorflow built-in grayscale function for preprocessing, then the accuracy reached 0.93 around epoch 30.
+
+
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
